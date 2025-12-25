@@ -4,7 +4,7 @@ export let canPlay = true;
  * Game's difficult.
  * @type {"easy" | "medium" | "hard"}
  */
-export let difficult = "easy";
+export let gameDifficult = "easy";
 
 /**
  * In a certain difficult, we have
@@ -15,24 +15,63 @@ export let difficult = "easy";
  * next difficult.
  * @type {number}
  */
-export let level = 1;
+export let gameLevel = 1;
+
+/**
+ * @type {"timed" | "passage"}
+ */
+export let gameMode = "timed";
 
 export function getGameDifficult() {
-	return difficult;
+	return gameDifficult;
 }
 
 export function getGameLevel() {
-	return level;
+	return gameLevel;
 }
 
 export function increaseGameDifficult() {
-	if (difficult === "hard") {
+	if (gameDifficult === "hard") {
 		return;
 	}
 
-	difficult = difficult === "easy" ? "medium" : "hard";
+	gameDifficult = gameDifficult === "easy" ? "medium" : "hard";
 }
 
 export function increaseGameLevel() {
-	level += 1;
+	gameLevel += 1;
+}
+
+/**
+ *
+ * @param {"easy" | "medium" | "hard"} difficult
+ * @returns {void}
+ */
+export function setGameDifficult(difficult) {
+	if (gameDifficult === difficult) {
+		return;
+	}
+
+	gameDifficult = difficult;
+}
+
+/**
+ *
+ * @param {number} level
+ */
+export function setGameLevel(level) {
+	if (gameLevel === level) {
+		return;
+	}
+
+	gameLevel = level;
+}
+
+/**
+ *
+ * @param {"timed" | "passed"} mode
+ * @returns {void}
+ */
+export function setGameMode(mode) {
+	gameMode = mode;
 }
