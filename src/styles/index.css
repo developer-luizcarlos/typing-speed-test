@@ -1,2 +1,147 @@
 @import url(./normalize.css);
 @import url(./variables.css);
+
+@font-face {
+	font-family: sora;
+	src: url(../../public/fonts/Sora/Sora-VariableFont_wght.ttf);
+}
+
+.dt {
+	color: var(--color-dt);
+}
+
+body {
+	background-color: var(--bg-body);
+	font-family: sora;
+	padding: 4rem;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 40px;
+}
+
+.personal-best-container {
+	color: var(--color-personal-best);
+	display: flex;
+	column-gap: 10px;
+}
+
+.navbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.game-info-container {
+	display: flex;
+	align-items: center;
+	column-gap: 20px;
+}
+
+.game-info {
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
+}
+
+.game-info__dt {
+	font-size: 1.2rem;
+}
+
+.game-info__dd {
+	font-weight: bold;
+}
+
+.game-info__wpm {
+	color: var(--color-game-info-wpm);
+}
+
+.game-info__accuracy {
+	color: var(--color-game-info-accuracy);
+}
+
+.game-info__time {
+	color: var(--color-game-info-time);
+}
+
+.game-settings {
+	display: flex;
+	align-items: center;
+	column-gap: 20px;
+}
+
+.game-settings__difficult {
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
+}
+.game-settings__mode {
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
+}
+
+.pseudo-label {
+	color: var(--color-pseudo-label);
+	font-size: 0.9rem;
+}
+
+.pills-container {
+	display: flex;
+	column-gap: 5px;
+}
+
+.pill {
+	border: 1.5px solid var(--border-color-pill);
+	border-radius: 5px;
+	color: var(--color-pill);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-inline: 10px;
+	font-size: 0.85rem;
+}
+
+.pill--selected {
+	border-color: var(--border-color-pill-selected);
+	color: var(--color-pill-selected);
+}
+
+.main {
+	border-top: 1px solid var(--border-color-main);
+	border-bottom: 1px solid var(--border-color-main);
+	padding-block: 2rem;
+	font-size: 1.5rem;
+}
+
+.text {
+	color: var(--color-text);
+}
+
+.footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 2rem;
+}
+
+.btn {
+	background-color: var(--bg-btn-reset);
+	border: none;
+	border-radius: 3px;
+	color: var(--color-btn-reset);
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 0.95rem;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	column-gap: 10px;
+	padding: 0.65rem;
+}
