@@ -1,0 +1,17 @@
+:root {
+	--bg-body: hsl(0, 0%, 7%);
+	--bg-btn-reset: hsl(0, 0%, 15%);
+	--border-color-main: hsl(240, 3%, 46%);
+	--border-color-pill-selected: hsl(214, 100%, 55%);
+	--border-color-pill: hsl(240, 1%, 59%);
+	--color-btn-reset: hsl(0, 0%, 100%);
+	--color-dt: hsl(240, 3%, 46%);
+	--color-game-info-accuracy: hsl(354, 63%, 57%);
+	--color-game-info-time: hsl(49, 85%, 70%);
+	--color-game-info-wpm: hsl(0, 0%, 100%);
+	--color-personal-best: hsl(0, 0%, 100%);
+	--color-pill-selected: hsl(214, 100%, 55%);
+	--color-pill: hsl(0, 0%, 100%);
+	--color-pseudo-label: hsl(240, 3%, 46%);
+	--color-text: hsl(240, 1%, 59%);
+}
