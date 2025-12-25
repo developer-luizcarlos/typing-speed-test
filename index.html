@@ -10,5 +10,83 @@
 		<script type="module" src="src/scripts/index.js"></script>
 		<title>Typing Speed Test</title>
 	</head>
-	<body></body>
+	<body>
+		<header class="header">
+			<img src="./public/images/logo-large.svg" alt="logo" class="logo" />
+			<dl class="personal-best-container">
+				<img
+					src="./public/images/icon-personal-best.svg"
+					alt="trophy icon"
+					class="icon"
+				/>
+				<dt class="dt">Personal best:</dt>
+				<dd>
+					<span class="personal-best-value">00</span>
+					WPM
+				</dd>
+			</dl>
+		</header>
+		<nav class="navbar">
+			<dl class="game-info-container">
+				<div class="game-info game-info__wpm">
+					<dt class="dt game-info__dt">WPM:</dt>
+					<dd class="game-info__dd game-info__dd--wpm">00</dd>
+				</div>
+				<div class="game-info game-info__accuracy">
+					<dt class="dt game-info__dt">Accuracy:</dt>
+					<dd class="game-info__dd game-info__dd--accuracy">0%</dd>
+				</div>
+				<div class="game-info game-info__time">
+					<dt class="dt game-info__dt">Time:</dt>
+					<dd class="game-info__dd game-info__dd--time">0:00</dd>
+				</div>
+			</dl>
+			<div class="game-settings">
+				<div class="game-settings__difficult">
+					<span class="pseudo-label">Difficult: </span>
+					<div class="pills-container">
+						<span class="pill pill--difficult pill--selected">Easy</span>
+						<span class="pill pill--difficult">Medium</span>
+						<span class="pill pill--difficult">Hard</span>
+					</div>
+				</div>
+				<div class="game-settings__mode">
+					<span class="pseudo-label">Mode: </span>
+					<div class="pills-container">
+						<span class="pill pill--mode pill--selected">Timed(60s)</span>
+						<span class="pill pill--mode">Passage</span>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<main class="main">
+			<p class="text">
+				Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis
+				blanditiis vel soluta distinctio voluptas qui necessitatibus
+				praesentium doloremque saepe, officia error dolores nostrum, iure
+				explicabo mollitia facere fuga. Esse aliquam dolorum exercitationem
+				enim sed cupiditate cumque itaque, reiciendis incidunt
+				necessitatibus laudantium porro officia iusto provident iure
+				assumenda maxime nemo excepturi animi eveniet facere delectus?
+				Sapiente aliquid sequi tempora earum recusandae, fuga nostrum
+				eveniet vitae quaerat perspiciatis nihil illo officiis ipsa non
+				officia vel magnam perferendis voluptate doloribus? Dicta corporis
+				quis eos beatae qui sequi aperiam necessitatibus temporibus modi
+				odit a architecto porro nesciunt quasi repellat, vero possimus
+				voluptatum eaque! Officia id iste architecto laborum natus maxime
+				aut perspiciatis at facere odio, nostrum ullam incidunt minima
+				porro, cumque dolore non ratione!
+			</p>
+		</main>
+		<footer class="footer">
+			<button class="btn btn--reset">
+				Reset Test
+				<img
+					src="public/images/icon-restart.svg"
+					alt=""
+					class="icon--restart"
+				/>
+			</button>
+		</footer>
+	</body>
 </html>
