@@ -1,5 +1,7 @@
 export let canPlay = true;
 
+export let gameAccuracy = 0;
+
 /**
  * Game's difficult.
  * @type {"easy" | "medium" | "hard"}
@@ -22,6 +24,10 @@ export let gameLevel = 1;
  */
 export let gameMode = "timed";
 
+export function getGameAccuracy() {
+	return gameAccuracy;
+}
+
 export function getGameDifficult() {
 	return gameDifficult;
 }
@@ -40,6 +46,15 @@ export function increaseGameDifficult() {
 
 export function increaseGameLevel() {
 	gameLevel += 1;
+}
+
+/**
+ *
+ * @param {number} accuracy
+ * @returns {void}
+ */
+export function setGameAccuracy(accuracy) {
+	gameAccuracy = accuracy;
 }
 
 /**

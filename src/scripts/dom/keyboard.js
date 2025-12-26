@@ -3,5 +3,5 @@
  * @returns {boolean}
  */
 export function isLetterKey(key) {
-	return /^[a-zA-Z\.\,\'\"\:\-]$/.test(key);
+	return /^[a-zA-Z\.\,\'\"\:\-\;]$/.test(key);
 }

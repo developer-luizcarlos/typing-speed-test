@@ -1,5 +1,7 @@
 import * as gameStatus from "../gameStatus.js";
 import {counter} from "../helpers/counter.js";
+import * as gameService from "../services/gameService.js";
+import * as accuracy from "./accuracy.js";
 import * as elements from "./elements.js";
 import * as keyboard from "./keyboard.js";
 import * as pills from "./pills.js";
@@ -28,6 +30,10 @@ export function DifficultpillHandler(pill) {
 	gameStatus.setGameLevel(1);
 
 	keyCounter.reset();
+
+	gameStatus.setGameAccuracy(0);
+
+	accuracy.renderAccuracy();
 
 	text.clearText();
 
@@ -94,4 +100,13 @@ export function keyboardHandler(keyboardEvent) {
 	text.highlightTextChar(keyCounter.getCount(), attemptStatus);
 
 	keyCounter.incrementCount();
+
+	const calculatedAccuracy = gameService.calculateGameAccuracy(
+		text.getTextCharsHighlightedAsRight().length,
+		textChars.length,
+	);
+
+	gameStatus.setGameAccuracy(calculatedAccuracy);
+
+	accuracy.renderAccuracy();
 }

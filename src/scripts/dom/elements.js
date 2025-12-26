@@ -16,3 +16,7 @@ export const $difficultPills = Array.from(
 export const $modePills = Array.from(
 	document.querySelectorAll(".pill--mode"),
 );
+
+export const $accuracy = document.querySelector(
+	".game-info__dd--accuracy",
+);

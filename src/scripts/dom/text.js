@@ -60,3 +60,7 @@ export function getTextChars() {
 		v => v.textContent !== " ",
 	);
 }
+
+export function getTextCharsHighlightedAsRight() {
+	return getTextChars().filter(v => v.classList.contains("right"));
+}
