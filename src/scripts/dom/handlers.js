@@ -1,10 +1,13 @@
 import * as gameStatus from "../gameStatus.js";
-import {renderText} from "../helpers/renderText.js";
 import * as elements from "./elements.js";
 import * as pills from "./pills.js";
+import * as text from "./text.js";
 
 export async function contentLoadedHandler() {
-	renderText(gameStatus.getGameDifficult(), gameStatus.getGameLevel());
+	text.renderText(
+		gameStatus.getGameDifficult(),
+		gameStatus.getGameLevel(),
+	);
 }
 
 /**
@@ -20,7 +23,12 @@ export function DifficultpillHandler(pill) {
 	gameStatus.setGameDifficult(difficult);
 	gameStatus.setGameLevel(1);
 
-	renderText(gameStatus.getGameDifficult(), gameStatus.getGameLevel());
+	text.clearText();
+
+	text.renderText(
+		gameStatus.getGameDifficult(),
+		gameStatus.getGameLevel(),
+	);
 
 	pills.updateHighlithedPill(pill, elements.$difficultPills);
 }
@@ -35,4 +43,13 @@ export function modePillHandler(pill) {
 	gameStatus.setGameMode(mode);
 
 	pills.updateHighlithedPill(pill, elements.$modePills);
+}
+
+/**
+ *
+ * @param {KeyboardEvent} e
+ */
+export function keyboardHandler(e) {
+	if (gameStatus.canPlay) {
+	}
 }

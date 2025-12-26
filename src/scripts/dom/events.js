@@ -7,6 +7,10 @@ export function initEvents() {
 		handlers.contentLoadedHandler();
 	});
 
+	document.addEventListener("keydown", e => {
+		handlers.keyboardHandler(e);
+	});
+
 	elements.$difficultPills.forEach(pill => {
 		pill.addEventListener("click", () => {
 			handlers.DifficultpillHandler(pill);
