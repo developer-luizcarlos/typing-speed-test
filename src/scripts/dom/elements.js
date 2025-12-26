@@ -20,3 +20,5 @@ export const $modePills = Array.from(
 export const $accuracy = document.querySelector(
 	".game-info__dd--accuracy",
 );
+
+export const $time = document.querySelector(".game-info__dd--time");
