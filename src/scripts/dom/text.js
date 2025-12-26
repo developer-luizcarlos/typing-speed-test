@@ -31,3 +31,32 @@ export async function renderText(gameDifficult, gameLevel) {
 export function clearText() {
 	elements.$text.innerHTML = "";
 }
+
+/**
+ *
+ * @param {number} index
+ * @param {"right" | "wrong"} status
+ */
+export function highlightTextChar(index, status) {
+	const textChars = getTextChars();
+
+	const textCharsLength = textChars.length;
+
+	if (index >= textCharsLength) {
+		return;
+	}
+
+	const charAt = textChars.at(index);
+
+	charAt.classList.add(status);
+}
+
+/**
+ *
+ * @returns {HTMLSpanElement[]}
+ */
+export function getTextChars() {
+	return Array.from(elements.$text.children).filter(
+		v => v.textContent !== " ",
+	);
+}
