@@ -1,4 +1,4 @@
-import {getTextsByDifficult} from "../helpers/getTextsByDifficult.js";
+import {getTextBasedOnCurrentDifficultAndLevel} from "../helpers/getTextBasedOnCurrentDifficultAndLevel.js";
 import * as elements from "./elements.js";
 
 /**
@@ -8,10 +8,9 @@ import * as elements from "./elements.js";
  */
 
 export async function renderText(gameDifficult, gameLevel) {
-	const texts = await getTextsByDifficult(gameDifficult);
-	const textOnLevel = texts.at(gameLevel - 1).text;
+	const text = await getTextBasedOnCurrentDifficultAndLevel();
 
-	const charsOnText = textOnLevel.split("");
+	const charsOnText = text.split("");
 
 	const fragment = document.createDocumentFragment();
 
