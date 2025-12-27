@@ -1,4 +1,4 @@
-export let canPlay = true;
+export let gameCanPlay = true;
 
 export let gameAccuracy = 0;
 
@@ -24,6 +24,10 @@ export let gameLevel = 1;
  */
 export let gameMode = "timed";
 
+export function getGameCanPlay() {
+	return gameCanPlay;
+}
+
 export function getGameAccuracy() {
 	return gameAccuracy;
 }
@@ -46,6 +50,14 @@ export function increaseGameDifficult() {
 
 export function increaseGameLevel() {
 	gameLevel += 1;
+}
+
+/**
+ * @param {boolean} canPlay
+ * @returns {void}
+ */
+export function setCanPlay(canPlay) {
+	gameCanPlay = canPlay;
 }
 
 /**
