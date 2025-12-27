@@ -1,4 +1,3 @@
-import * as gameStatus from "../gameStatus.js";
 import * as elements from "./elements.js";
 import * as handlers from "./handlers.js";
 

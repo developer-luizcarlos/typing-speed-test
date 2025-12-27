@@ -1,4 +1,4 @@
-import * as gameStatus from "../gameStatus.js";
+import {Game} from "../classes/Game.js";
 import {counter} from "../helpers/counter.js";
 import * as gameService from "../services/gameService.js";
 import * as accuracy from "./accuracy.js";
@@ -11,12 +11,9 @@ import * as time from "./time.js";
 const keyCounter = counter();
 
 export async function contentLoadedHandler() {
-	text.renderText(
-		gameStatus.getGameDifficult(),
-		gameStatus.getGameLevel(),
-	);
+	text.renderText(Game.getDifficult, Game.getLevel);
 
-	if (gameStatus.getGameCanPlay()) {
+	if (Game.getCanPlay) {
 		time.minutesTimer.init();
 	}
 }
@@ -31,23 +28,20 @@ export function DifficultpillHandler(pill) {
 	 */
 	const difficult = pill.getAttribute("data-difficult");
 
-	gameStatus.setGameDifficult(difficult);
-	gameStatus.setGameLevel(1);
+	Game.setDifficult = difficult;
+	Game.setGameLevel = 1;
 
 	time.resetTime();
 
 	keyCounter.reset();
 
-	gameStatus.setGameAccuracy(0);
+	Game.setAccuracy = 0;
 
 	accuracy.renderAccuracy();
 
 	text.clearText();
 
-	text.renderText(
-		gameStatus.getGameDifficult(),
-		gameStatus.getGameLevel(),
-	);
+	text.renderText(Game.getDifficult, Game.getLevel);
 
 	pills.updateHighlithedPill(pill, elements.$difficultPills);
 }
@@ -59,7 +53,7 @@ export function DifficultpillHandler(pill) {
 export function modePillHandler(pill) {
 	const mode = pill.getAttribute("data-mode");
 
-	gameStatus.setGameMode(mode);
+	Game.setMode = mode;
 
 	pills.updateHighlithedPill(pill, elements.$modePills);
 }
@@ -69,7 +63,7 @@ export function modePillHandler(pill) {
  * @param {KeyboardEvent} keyboardEvent
  */
 export function keyboardHandler(keyboardEvent) {
-	if (!gameStatus.getGameCanPlay()) {
+	if (!Game.getCanPlay) {
 		return;
 	}
 
@@ -113,7 +107,7 @@ export function keyboardHandler(keyboardEvent) {
 		textChars.length,
 	);
 
-	gameStatus.setGameAccuracy(calculatedAccuracy);
+	Game.setAccuracy = calculatedAccuracy;
 
 	accuracy.renderAccuracy();
 }

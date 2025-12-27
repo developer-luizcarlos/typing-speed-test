@@ -1,4 +1,4 @@
-import * as gameStatus from "../gameStatus.js";
+import {Game} from "../classes/Game.js";
 import {counter} from "../helpers/counter.js";
 import {formatSecondsToMinutes} from "../helpers/formatSecondsToMinutes.js";
 import {timer} from "../helpers/timer.js";
@@ -14,7 +14,7 @@ export function getPassedTimeInSeconds() {
 
 export const minutesTimer = timer(1000, () => {
 	if (timeCounter.getCount() === SECONDS_IN_A_MINUTE) {
-		gameStatus.setCanPlay(false);
+		Game.setCanPlay = false;
 
 		minutesTimer.stop();
 	}

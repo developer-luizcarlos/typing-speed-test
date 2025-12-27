@@ -1,4 +1,4 @@
-import * as gameStatus from "../gameStatus.js";
+import {Game} from "../classes/Game.js";
 import * as elements from "./elements.js";
 
 /**
@@ -6,5 +6,5 @@ import * as elements from "./elements.js";
  * @returns {void}
  */
 export function renderAccuracy() {
-	elements.$accuracy.textContent = `${gameStatus.getGameAccuracy()}%`;
+	elements.$accuracy.textContent = `${Game.getAccuracy}%`;
 }
