@@ -4,7 +4,7 @@ import {initEvents} from "./dom/events.js";
 // TODO: [ ] create feature to check if the user can go to the next level.
 // TODO: [ ] add to btn reset function to restart current playthrough or advance level.
 // TODO:  [ ] fix the parameter's name on getTextsByDifficult function, from level to difficult.
-// TODO: [ ] refactor timer function to a class to be inherit.
+// TODO: [ ] refactor counter function to a class to be inherit.
 
 function main() {
 	initEvents();

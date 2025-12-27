@@ -1,7 +1,7 @@
 import {Game} from "../classes/Game.js";
+import {Timer} from "../classes/Timer.js";
 import {counter} from "../helpers/counter.js";
 import {formatSecondsToMinutes} from "../helpers/formatSecondsToMinutes.js";
-import {timer} from "../helpers/timer.js";
 import * as elements from "./elements.js";
 
 const SECONDS_IN_A_MINUTE = 60;
@@ -12,7 +12,7 @@ export function getPassedTimeInSeconds() {
 	return timeCounter.getCount();
 }
 
-export const minutesTimer = timer(1000, () => {
+export const minutesTimer = new Timer(1000, () => {
 	if (timeCounter.getCount() === SECONDS_IN_A_MINUTE) {
 		Game.setCanPlay = false;
 
