@@ -1,5 +1,5 @@
+import {Counter} from "../classes/Counter.js";
 import {Game} from "../classes/Game.js";
-import {counter} from "../helpers/counter.js";
 import * as gameService from "../services/gameService.js";
 import * as accuracy from "./accuracy.js";
 import * as elements from "./elements.js";
@@ -8,7 +8,7 @@ import * as pills from "./pills.js";
 import * as text from "./text.js";
 import * as time from "./time.js";
 
-const keyCounter = counter();
+const keyCounter = new Counter();
 
 export async function contentLoadedHandler() {
 	text.renderText(Game.getDifficult, Game.getLevel);
@@ -71,7 +71,7 @@ export function keyboardHandler(keyboardEvent) {
 
 	const textChars = text.getTextChars();
 
-	if (keyCounter.getCount() >= textChars.length) {
+	if (keyCounter.getCount >= textChars.length) {
 		/**
 		 * TODO: check if the user will upgrade level
 		 * by the percentage of  his right tries. (accuracy)
@@ -88,7 +88,7 @@ export function keyboardHandler(keyboardEvent) {
 		keyboardEvent.preventDefault();
 	}
 
-	const currentLetter = textChars.at(keyCounter.getCount()).textContent;
+	const currentLetter = textChars.at(keyCounter.getCount).textContent;
 
 	let areKeyAndCurrentLetterEquals = key === currentLetter;
 
@@ -98,7 +98,7 @@ export function keyboardHandler(keyboardEvent) {
 
 	const attemptStatus = areKeyAndCurrentLetterEquals ? "right" : "wrong";
 
-	text.highlightTextChar(keyCounter.getCount(), attemptStatus);
+	text.highlightTextChar(keyCounter.getCount, attemptStatus);
 
 	keyCounter.incrementCount();
 
