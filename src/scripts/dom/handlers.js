@@ -1,5 +1,6 @@
 import {Counter} from "../classes/Counter.js";
 import {Game} from "../classes/Game.js";
+import {areLettersEquals} from "../helpers/areLettersEquals.js";
 import * as gameService from "../services/gameService.js";
 import * as accuracy from "./accuracy.js";
 import * as elements from "./elements.js";
@@ -7,8 +8,6 @@ import * as keyboard from "./keyboard.js";
 import * as pills from "./pills.js";
 import * as text from "./text.js";
 import * as time from "./time.js";
-
-const keyCounter = new Counter();
 
 export async function contentLoadedHandler() {
 	text.renderText(Game.getDifficult, Game.getLevel);
@@ -33,7 +32,7 @@ export function DifficultpillHandler(pill) {
 
 	time.resetTime();
 
-	keyCounter.reset();
+	keyboard.keyPressed.reset();
 
 	Game.setAccuracy = 0;
 
@@ -60,18 +59,20 @@ export function modePillHandler(pill) {
 
 /**
  *
- * @param {KeyboardEvent} keyboardEvent
+ * @param {KeyboardEvent} event
  */
-export function keyboardHandler(keyboardEvent) {
+export function keyboardHandler(event) {
 	if (!Game.getCanPlay) {
 		return;
 	}
 
-	const key = keyboardEvent.key;
+	const key = event.key;
 
 	const textChars = text.getTextChars();
 
-	if (keyCounter.getCount >= textChars.length) {
+	if (
+		!keyboard.isPressedKeysQuantityLessThanTextLength(textChars.length)
+	) {
 		/**
 		 * TODO: check if the user will upgrade level
 		 * by the percentage of  his right tries. (accuracy)
@@ -79,18 +80,19 @@ export function keyboardHandler(keyboardEvent) {
 		return;
 	}
 
+	// stops triggering a firefox shortcut.
+	keyboard.preventBrowserShortcuts(event);
+
 	if (!keyboard.isLetterKey(key)) {
 		return;
 	}
 
-	// stops triggering a firefox shortcut.
-	if (key === "'") {
-		keyboardEvent.preventDefault();
-	}
+	const currentLetter = textChars.at(
+		keyboard.keyPressed.getCount,
+	).textContent;
 
-	const currentLetter = textChars.at(keyCounter.getCount).textContent;
-
-	let areKeyAndCurrentLetterEquals = key === currentLetter;
+	// let areKeyAndCurrentLetterEquals = key === currentLetter;
+	let areKeyAndCurrentLetterEquals = areLettersEquals(key, currentLetter);
 
 	if (currentLetter === "—" && key === "-") {
 		areKeyAndCurrentLetterEquals = true;
@@ -98,9 +100,9 @@ export function keyboardHandler(keyboardEvent) {
 
 	const attemptStatus = areKeyAndCurrentLetterEquals ? "right" : "wrong";
 
-	text.highlightTextChar(keyCounter.getCount, attemptStatus);
+	text.highlightTextChar(keyboard.keyPressed.getCount, attemptStatus);
 
-	keyCounter.incrementCount();
+	keyboard.keyPressed.incrementCount();
 
 	const calculatedAccuracy = gameService.calculateGameAccuracy(
 		text.getTextCharsHighlightedAsRight().length,
