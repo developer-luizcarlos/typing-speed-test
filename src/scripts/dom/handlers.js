@@ -6,6 +6,7 @@ import * as elements from "./elements.js";
 import * as keyboard from "./keyboard.js";
 import * as pills from "./pills.js";
 import * as text from "./text.js";
+import * as time from "./time.js";
 
 const keyCounter = counter();
 
@@ -14,6 +15,10 @@ export async function contentLoadedHandler() {
 		gameStatus.getGameDifficult(),
 		gameStatus.getGameLevel(),
 	);
+
+	if (gameStatus.getGameCanPlay()) {
+		time.minutesTimer.init();
+	}
 }
 
 /**
@@ -28,6 +33,8 @@ export function DifficultpillHandler(pill) {
 
 	gameStatus.setGameDifficult(difficult);
 	gameStatus.setGameLevel(1);
+
+	time.resetTime();
 
 	keyCounter.reset();
 
@@ -62,7 +69,7 @@ export function modePillHandler(pill) {
  * @param {KeyboardEvent} keyboardEvent
  */
 export function keyboardHandler(keyboardEvent) {
-	if (!gameStatus.canPlay) {
+	if (!gameStatus.getGameCanPlay()) {
 		return;
 	}
 
