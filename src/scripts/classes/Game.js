@@ -65,6 +65,10 @@ export class Game {
 		return this.level;
 	}
 
+	static get getMode() {
+		return this.mode;
+	}
+
 	/**
 	 * @param {number} accuracy
 	 * @returns {void}
