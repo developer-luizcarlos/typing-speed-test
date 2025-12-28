@@ -31,7 +31,7 @@ export function getCorrectlyTypedWordsQuantity() {
 	return correctlyTypedWordsQuantity;
 }
 
-export function getTextLettersHighlightedAsRight() {
+export function getTextCharsCorrectlyTyped() {
 	return getTextLettersAndPontuaction().filter(v =>
 		v.classList.contains("right"),
 	);

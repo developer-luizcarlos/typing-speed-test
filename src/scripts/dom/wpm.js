@@ -6,8 +6,8 @@ import * as time from "./time.js";
  * @returns {number}
  */
 export function getWPM() {
-	const correctlyPressedCharsQuantity =
-		text.getTextLettersHighlightedAsRight().length;
+	const correctlyTypedCharsQuantity =
+		text.getTextCharsCorrectlyTyped().length;
 
 	const passedSeconds = time.getPassedTimeInSeconds();
 
@@ -16,7 +16,7 @@ export function getWPM() {
 	}
 
 	const wpm = Math.floor(
-		(correctlyPressedCharsQuantity * 60) / (5 * passedSeconds),
+		(correctlyTypedCharsQuantity * 60) / (5 * passedSeconds),
 	);
 
 	return wpm;
