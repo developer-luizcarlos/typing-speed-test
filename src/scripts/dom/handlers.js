@@ -2,6 +2,7 @@ import {Game} from "../classes/Game.js";
 import {areLettersEquals} from "../helpers/areLettersEquals.js";
 import {loadProgressIfExists} from "../helpers/loadProgressIfExists.js";
 import * as gameService from "../services/gameService.js";
+import {GameProgress} from "../storage/GameProgress.storage.js";
 import * as accuracy from "./accuracy.js";
 import * as elements from "./elements.js";
 import * as keyboard from "./keyboard.js";
@@ -14,6 +15,8 @@ export async function contentLoadedHandler() {
 	loadProgressIfExists();
 
 	text.renderText(Game.getDifficult, Game.getLevel);
+
+	pills.highlightPillBasedOnDifficult();
 
 	if (Game.getCanPlay) {
 		time.minutesTimer.init();
@@ -29,6 +32,9 @@ export function DifficultpillHandler(pill) {
 	 * @type {"easy" | "medium" | "hard"}
 	 */
 	const difficult = pill.getAttribute("data-difficult");
+
+	GameProgress.saveDifficult(difficult);
+	GameProgress.saveLevel(1);
 
 	Game.setDifficult = difficult;
 	Game.setLevel = 1;

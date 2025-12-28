@@ -1,4 +1,18 @@
+import {Game} from "../classes/Game.js";
 import * as elements from "./elements.js";
+
+export function highlightPillBasedOnDifficult() {
+	const currentDifficult = Game.getDifficult;
+
+	const pillWithDifficultAsItsDataValue = Array.from(
+		elements.$difficultPills,
+	).find(p => p.getAttribute("data-difficult") === currentDifficult);
+
+	updateHighlithedPill(
+		pillWithDifficultAsItsDataValue,
+		elements.$difficultPills,
+	);
+}
 
 /**
  *
