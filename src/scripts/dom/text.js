@@ -63,3 +63,41 @@ export function getTextChars() {
 export function getTextCharsHighlightedAsRight() {
 	return getTextChars().filter(v => v.classList.contains("right"));
 }
+
+/**
+ * Get an array of span elements,
+ * representing each of these arrays
+ * a word in the rendered text.
+ * @returns {HTMLSpanElement[][]}
+ */
+export function getTextWords() {
+	const children = Array.from(elements.$text.children);
+
+	/**
+	 * @type {HTMLSpanElement[][]}
+	 */
+	const words = [];
+
+	let startSliceIndex = 0;
+
+	children.forEach((child, index) => {
+		const isWhiteSpace = child.textContent === " ";
+
+		if (isWhiteSpace) {
+			const word = children.slice(startSliceIndex, index);
+
+			startSliceIndex = index + 1;
+
+			words.push(word);
+		}
+
+		// insert the last word in the words array.
+		if (index === children.length - 1) {
+			const word = children.slice(startSliceIndex, index);
+
+			words.push(word);
+		}
+	});
+
+	return words;
+}
