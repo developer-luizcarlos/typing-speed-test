@@ -110,7 +110,7 @@ export function highlightTextChar(index, status) {
  * @returns {void}
  */
 
-export async function renderText(gameDifficult, gameLevel) {
+export async function renderText() {
 	const text = await getTextBasedOnCurrentDifficultAndLevel();
 
 	const charsOnText = text.split("");
