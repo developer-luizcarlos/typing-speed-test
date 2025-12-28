@@ -106,7 +106,7 @@ export function keyboardHandler(event) {
 	keyboard.keyPressed.incrementCount();
 
 	const calculatedAccuracy = gameService.calculateGameAccuracy(
-		text.getTextCharsHighlightedAsRight().length,
+		text.getTextLettersHighlightedAsRight().length,
 		textChars.length,
 	);
 

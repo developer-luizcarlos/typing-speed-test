@@ -1,29 +1,5 @@
-import {Counter} from "../classes/Counter.js";
 import {getTextBasedOnCurrentDifficultAndLevel} from "../helpers/getTextBasedOnCurrentDifficultAndLevel.js";
 import * as elements from "./elements.js";
-
-/**
- * @param {"easy" | "medium" | "hard"} gameDifficult
- * @param {number} gameLevel
- * @returns {void}
- */
-
-export async function renderText(gameDifficult, gameLevel) {
-	const text = await getTextBasedOnCurrentDifficultAndLevel();
-
-	const charsOnText = text.split("");
-
-	const fragment = document.createDocumentFragment();
-
-	for (const char of charsOnText) {
-		const $span = document.createElement("span");
-		$span.textContent = char;
-
-		fragment.appendChild($span);
-	}
-
-	elements.$text.append(fragment);
-}
 
 /**
  * @returns {void}
@@ -32,23 +8,33 @@ export function clearText() {
 	elements.$text.innerHTML = "";
 }
 
+export function getCorrectlyTypedWords() {
+	const words = getTextWordsMadeOfSpans();
+
+	const correctlyTypedWords = words.filter(spans => {
+		return spans.every(span => span.classList.contains("right"));
+	});
+
+	return correctlyTypedWords;
+}
+
 /**
- *
- * @param {number} index
- * @param {"right" | "wrong"} status
+ * Returns the quantity of correct words
+ * you've typed.
+ * @returns {number}
  */
-export function highlightTextChar(index, status) {
-	const textChars = getTextLettersAndPontuaction();
+export function getCorrectlyTypedWordsQuantity() {
+	const correctlyTypedWords = getCorrectlyTypedWords();
 
-	const textCharsLength = textChars.length;
+	const correctlyTypedWordsQuantity = correctlyTypedWords.length;
 
-	if (index >= textCharsLength) {
-		return;
-	}
+	return correctlyTypedWordsQuantity;
+}
 
-	const charAt = textChars.at(index);
-
-	charAt.classList.add(status);
+export function getTextLettersHighlightedAsRight() {
+	return getTextLettersAndPontuaction().filter(v =>
+		v.classList.contains("right"),
+	);
 }
 
 /**
@@ -61,19 +47,13 @@ export function getTextLettersAndPontuaction() {
 	);
 }
 
-export function getTextCharsHighlightedAsRight() {
-	return getTextLettersAndPontuaction().filter(v =>
-		v.classList.contains("right"),
-	);
-}
-
 /**
  * Get an array of span elements,
  * representing each of these arrays
  * a word in the rendered text.
  * @returns {HTMLSpanElement[][]}
  */
-export function getTextWords() {
+export function getTextWordsMadeOfSpans() {
 	const children = Array.from(elements.$text.children);
 
 	/**
@@ -106,18 +86,43 @@ export function getTextWords() {
 }
 
 /**
- * Returns the quantity of correct words
- * you've typed.
- * @returns {number}
+ *
+ * @param {number} index
+ * @param {"right" | "wrong"} status
  */
-export function getCorrectlyTypedWordsQuantity() {
-	const words = getTextWords();
+export function highlightTextChar(index, status) {
+	const textChars = getTextLettersAndPontuaction();
 
-	const correctlyTypedWords = words.filter(spans => {
-		return spans.every(span => span.classList.contains("right"));
-	});
+	const textCharsLength = textChars.length;
 
-	const correctlyTypedWordsQuantity = correctlyTypedWords.length;
+	if (index >= textCharsLength) {
+		return;
+	}
 
-	return correctlyTypedWordsQuantity;
+	const charAt = textChars.at(index);
+
+	charAt.classList.add(status);
+}
+
+/**
+ * @param {"easy" | "medium" | "hard"} gameDifficult
+ * @param {number} gameLevel
+ * @returns {void}
+ */
+
+export async function renderText(gameDifficult, gameLevel) {
+	const text = await getTextBasedOnCurrentDifficultAndLevel();
+
+	const charsOnText = text.split("");
+
+	const fragment = document.createDocumentFragment();
+
+	for (const char of charsOnText) {
+		const $span = document.createElement("span");
+		$span.textContent = char;
+
+		fragment.appendChild($span);
+	}
+
+	elements.$text.append(fragment);
 }

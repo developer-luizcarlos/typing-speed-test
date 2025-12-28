@@ -7,7 +7,7 @@ import * as time from "./time.js";
  */
 export function getWPM() {
 	const correctlyPressedCharsQuantity =
-		text.getTextCharsHighlightedAsRight().length;
+		text.getTextLettersHighlightedAsRight().length;
 
 	const passedSeconds = time.getPassedTimeInSeconds();
 
