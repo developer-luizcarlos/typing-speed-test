@@ -2,8 +2,6 @@ import {Counter} from "../classes/Counter.js";
 import {getTextBasedOnCurrentDifficultAndLevel} from "../helpers/getTextBasedOnCurrentDifficultAndLevel.js";
 import * as elements from "./elements.js";
 
-const completedWordsCounter = new Counter();
-
 /**
  * @param {"easy" | "medium" | "hard"} gameDifficult
  * @param {number} gameLevel
