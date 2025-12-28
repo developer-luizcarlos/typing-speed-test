@@ -1,5 +1,8 @@
+import {Counter} from "../classes/Counter.js";
 import {getTextBasedOnCurrentDifficultAndLevel} from "../helpers/getTextBasedOnCurrentDifficultAndLevel.js";
 import * as elements from "./elements.js";
+
+const completedWordsCounter = new Counter();
 
 /**
  * @param {"easy" | "medium" | "hard"} gameDifficult
@@ -100,4 +103,21 @@ export function getTextWords() {
 	});
 
 	return words;
+}
+
+/**
+ * Returns the quantity of correct words
+ * you've typed.
+ * @returns {number}
+ */
+export function getCorrectlyTypedWordsQuantity() {
+	const words = getTextWords();
+
+	const correctlyTypedWords = words.filter(spans => {
+		return spans.every(span => span.classList.contains("right"));
+	});
+
+	const correctlyTypedWordsQuantity = correctlyTypedWords.length;
+
+	return correctlyTypedWordsQuantity;
 }
