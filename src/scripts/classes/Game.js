@@ -89,6 +89,10 @@ export class Game {
 		this.difficult = difficult;
 	}
 
+	static set setLevel(level) {
+		this.level = level;
+	}
+
 	/**
 	 * @param {"timed" | "passage"} mode
 	 * @returns {void}
