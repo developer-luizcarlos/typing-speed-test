@@ -18,6 +18,8 @@ export async function contentLoadedHandler() {
 
 	pills.highlightPillBasedOnDifficult();
 
+	pills.highlightPillBasedOnMode();
+
 	if (Game.getCanPlay) {
 		time.minutesTimer.init();
 	}
@@ -61,6 +63,8 @@ export function DifficultpillHandler(pill) {
  */
 export function modePillHandler(pill) {
 	const mode = pill.getAttribute("data-mode");
+
+	GameProgress.saveMode(mode);
 
 	Game.setMode = mode;
 

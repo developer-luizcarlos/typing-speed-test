@@ -14,6 +14,16 @@ export function highlightPillBasedOnDifficult() {
 	);
 }
 
+export function highlightPillBasedOnMode() {
+	const currentMode = Game.getMode;
+
+	const pillWithModeAsItsDataValue = Array.from(elements.$modePills).find(
+		p => p.getAttribute("data-mode") === currentMode,
+	);
+
+	updateHighlithedPill(pillWithModeAsItsDataValue, elements.$modePills);
+}
+
 /**
  *
  * @param {HTMLElement} pillToBeHighlithed
