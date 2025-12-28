@@ -38,7 +38,7 @@ export function clearText() {
  * @param {"right" | "wrong"} status
  */
 export function highlightTextChar(index, status) {
-	const textChars = getTextChars();
+	const textChars = getTextLettersAndPontuaction();
 
 	const textCharsLength = textChars.length;
 
@@ -55,14 +55,16 @@ export function highlightTextChar(index, status) {
  *
  * @returns {HTMLSpanElement[]}
  */
-export function getTextChars() {
+export function getTextLettersAndPontuaction() {
 	return Array.from(elements.$text.children).filter(
 		v => v.textContent !== " ",
 	);
 }
 
 export function getTextCharsHighlightedAsRight() {
-	return getTextChars().filter(v => v.classList.contains("right"));
+	return getTextLettersAndPontuaction().filter(v =>
+		v.classList.contains("right"),
+	);
 }
 
 /**

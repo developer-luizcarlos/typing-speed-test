@@ -69,7 +69,7 @@ export function keyboardHandler(event) {
 
 	const key = event.key;
 
-	const textChars = text.getTextChars();
+	const textChars = text.getTextLettersAndPontuaction();
 
 	if (
 		!keyboard.isPressedKeysQuantityLessThanTextLength(textChars.length)
