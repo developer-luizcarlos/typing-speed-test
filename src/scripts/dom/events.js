@@ -12,7 +12,7 @@ export function initEvents() {
 
 	elements.$difficultPills.forEach(pill => {
 		pill.addEventListener("click", () => {
-			handlers.DifficultpillHandler(pill);
+			handlers.difficultpillHandler(pill);
 		});
 	});
 

@@ -7,6 +7,7 @@ import * as accuracy from "./accuracy.js";
 import * as elements from "./elements.js";
 import * as keyboard from "./keyboard.js";
 import * as pills from "./pills.js";
+import {resetRenderedContent} from "./resetRenderedContent.js";
 import * as text from "./text.js";
 import * as time from "./time.js";
 import * as wpm from "./wpm.js";
@@ -14,7 +15,7 @@ import * as wpm from "./wpm.js";
 export async function contentLoadedHandler() {
 	loadProgressIfExists();
 
-	text.renderText(Game.getDifficult, Game.getLevel);
+	text.renderText();
 
 	pills.highlightPillBasedOnDifficult();
 
@@ -29,7 +30,7 @@ export async function contentLoadedHandler() {
  *
  * @param {HTMLElement} pill
  */
-export function DifficultpillHandler(pill) {
+export function difficultpillHandler(pill) {
 	/**
 	 * @type {"easy" | "medium" | "hard"}
 	 */
@@ -40,21 +41,10 @@ export function DifficultpillHandler(pill) {
 
 	Game.setDifficult = difficult;
 	Game.setLevel = 1;
-	Game.setAccuracy = 0;
-
-	accuracy.renderAccuracy();
-
-	time.resetTime();
-
-	keyboard.keyPressed.reset();
-
-	text.clearText();
-
-	text.renderText(Game.getDifficult, Game.getLevel);
-
-	wpm.resetWPM();
 
 	pills.updateHighlithedPill(pill, elements.$difficultPills);
+
+	resetRenderedContent();
 }
 
 /**
@@ -69,6 +59,8 @@ export function modePillHandler(pill) {
 	Game.setMode = mode;
 
 	pills.updateHighlithedPill(pill, elements.$modePills);
+
+	resetRenderedContent();
 }
 
 /**
@@ -91,6 +83,7 @@ export function keyboardHandler(event) {
 		 * TODO: check if the user will upgrade level
 		 * by the percentage of  his right tries. (accuracy)
 		 */
+		time.minutesTimer.stop();
 		return;
 	}
 
