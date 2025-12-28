@@ -1,4 +1,3 @@
-import {Counter} from "../classes/Counter.js";
 import {Game} from "../classes/Game.js";
 import {areLettersEquals} from "../helpers/areLettersEquals.js";
 import * as gameService from "../services/gameService.js";
@@ -8,6 +7,7 @@ import * as keyboard from "./keyboard.js";
 import * as pills from "./pills.js";
 import * as text from "./text.js";
 import * as time from "./time.js";
+import * as wpm from "./wpm.js";
 
 export async function contentLoadedHandler() {
 	text.renderText(Game.getDifficult, Game.getLevel);
@@ -28,19 +28,20 @@ export function DifficultpillHandler(pill) {
 	const difficult = pill.getAttribute("data-difficult");
 
 	Game.setDifficult = difficult;
-	Game.setGameLevel = 1;
+	Game.setLevel = 1;
+	Game.setAccuracy = 0;
+
+	accuracy.renderAccuracy();
 
 	time.resetTime();
 
 	keyboard.keyPressed.reset();
 
-	Game.setAccuracy = 0;
-
-	accuracy.renderAccuracy();
-
 	text.clearText();
 
 	text.renderText(Game.getDifficult, Game.getLevel);
+
+	wpm.resetWPM();
 
 	pills.updateHighlithedPill(pill, elements.$difficultPills);
 }
@@ -112,4 +113,6 @@ export function keyboardHandler(event) {
 	Game.setAccuracy = calculatedAccuracy;
 
 	accuracy.renderAccuracy();
+
+	wpm.renderWPM();
 }

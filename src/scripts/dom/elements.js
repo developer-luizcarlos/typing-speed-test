@@ -22,3 +22,5 @@ export const $accuracy = document.querySelector(
 );
 
 export const $time = document.querySelector(".game-info__dd--time");
+
+export const $wpm = document.querySelector(".game-info__dd--wpm");
