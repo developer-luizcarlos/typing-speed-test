@@ -39,5 +39,5 @@ export function renderTime() {
 export function resetTime() {
 	timeCounter.reset();
 
-	elements.$time.textContent = formatSecondsToMinutes(0);
+	renderTime();
 }
