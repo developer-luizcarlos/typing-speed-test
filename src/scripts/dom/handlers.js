@@ -1,6 +1,5 @@
 import {Game} from "../classes/Game.js";
 import {areLettersEquals} from "../helpers/areLettersEquals.js";
-import {loadProgressIfExists} from "../helpers/loadProgressIfExists.js";
 import * as gameService from "../services/gameService.js";
 import {GameProgress} from "../storage/GameProgress.storage.js";
 import * as accuracy from "./accuracy.js";
@@ -13,8 +12,6 @@ import * as time from "./time.js";
 import * as wpm from "./wpm.js";
 
 export async function contentLoadedHandler() {
-	loadProgressIfExists();
-
 	text.renderText();
 
 	pills.highlightPillBasedOnDifficult();
